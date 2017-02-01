@@ -2,3 +2,8 @@
 <h3>{{ post.title }}</h3>
 <span>Posted on {{ post.created_at | date }} by {{ post.author }}</span>
 <p>{{ post.text }}</p>
+<ul>
+  <li ng-repeat="comment in post.comments | orderBy:comment.votes">
+    <one-comment></one-comment>
+  </li>
+</ul>

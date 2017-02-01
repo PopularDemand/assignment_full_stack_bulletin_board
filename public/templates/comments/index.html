@@ -1,9 +1,6 @@
 <h3>Recent Comments</h3>
 <ul>
-  <!-- <li ng-repeat="comment in comments | orderBy:created_at:true | limitTo:3">
-    <h4>{{ comment.votes }} | {{ comment.author }}</h4>
-    <span>Comment on {{ comment.created_at | date }}</span><br>
-    <span>{{ comment.body }}</span>
-  </li> -->
-  <li ng-repeat='comment in comments | orderBy:created_at:true | limitTo:3' comment comment='comment'></li>
+  <li ng-repeat="comment in comments | orderBy:created_at:true | limitTo:10">
+    <one-comment></one-comment>
+  </li>
 </ul>
