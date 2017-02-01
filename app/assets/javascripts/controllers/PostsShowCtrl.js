@@ -1,6 +1,10 @@
 BulletinBoard.controller('PostsShowCtrl', ['$scope', '$stateParams', 'postsService',
   function($scope, $stateParams, postsService) {
   
-  $scope.post = postsService.getPost($stateParams.id);
+  var _setPost = function(post) {
+    $scope.post = post;
+  }
+
+  postsService.getPost($stateParams.id).then(_setPost);
 
 }])

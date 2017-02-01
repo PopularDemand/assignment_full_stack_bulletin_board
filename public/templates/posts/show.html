@@ -3,7 +3,7 @@
 <span>Posted on {{ post.created_at | date }} by {{ post.author }}</span>
 <p>{{ post.text }}</p>
 <ul>
-  <li ng-repeat="comment in post.comments | orderBy:comment.votes">
+  <li ng-repeat="comment in post.comments | orderBy:'votes':true">
     <one-comment></one-comment>
   </li>
 </ul>

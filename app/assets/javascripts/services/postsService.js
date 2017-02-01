@@ -1,5 +1,5 @@
-BulletinBoard.factory('postsService', ['Restangular',
-  function(Restangular) {
+BulletinBoard.factory('postsService', ['Restangular', 'commentsService',
+  function(Restangular, commentsService) {
 
     var _posts = Restangular.all('posts').getList().$object;
 
@@ -8,7 +8,10 @@ BulletinBoard.factory('postsService', ['Restangular',
     }
 
     var getPost = function(id) {
-      return Restangular.one('posts', id).get().$object;
+      return Restangular.one('posts', id).get()
+        .then(function(post){
+          return _extendComments(post);
+        });
     }
 
     var _create = function(params) {
@@ -16,6 +19,11 @@ BulletinBoard.factory('postsService', ['Restangular',
         .then(function(post) {
           _posts.unshift(post)
         })
+    }
+
+    var _extendComments = function(post) {
+      post.comments.forEach(commentsService.extendComment);
+      return post;
     }
 
     Restangular.extendCollection('posts', function(posts) {
