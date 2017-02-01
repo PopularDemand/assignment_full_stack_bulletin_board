@@ -1,0 +1,3 @@
+BulletinBoard.controller('PostsShowCtrl', function() {
+
+})
