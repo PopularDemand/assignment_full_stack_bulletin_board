@@ -15,10 +15,14 @@ POST_TIMES.times do
 end
 Post.all.each do |post|
   COMMENT_TIMES.times do
-    post.comments.create(
-    author: Faker::Name.name,
-    body: Faker::Hacker.say_something_smart,
-    votes: Faker::Number.between(-5, 5)
+    comment = Comment.create(
+      author: Faker::Name.name,
+      body: Faker::Hacker.say_something_smart,
+      votes: Faker::Number.between(-5, 5)
     )
+
+    comment.created_at = Faker::Time.backward(31)
+
+    post.comments << comment
   end
 end

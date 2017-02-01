@@ -1,3 +1,23 @@
+<form name="createPostForm" ng-submit="createPost()" novalidate>
+  <ul ng-show="errors">
+    <li ng-repeat="error in errors">
+      {{ error }}
+    </li>
+  </ul>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" name="title" ng-model="newPost.title" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="author">Author</label>
+    <input type="text" name="author" ng-model="newPost.author" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="text">Text</label>
+    <textarea name="text" ng-model="newPost.text" class="form-control"></textarea required>
+  </div>
+  <input type="submit" class="btn btn-primary">
+</form>
 <ul class="posts-ul">
   <li ng-repeat="post in posts">
     <a href="#">{{ post.title}}</a><br>
