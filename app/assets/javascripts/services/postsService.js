@@ -7,6 +7,10 @@ BulletinBoard.factory('postsService', ['Restangular',
       return _posts
     }
 
+    var getPost = function(id) {
+      return Restangular.one('posts', id).get().$object;
+    }
+
     var _create = function(params) {
       return Restangular.all('posts').post(params)
         .then(function(post) {
@@ -20,7 +24,8 @@ BulletinBoard.factory('postsService', ['Restangular',
     })
 
     return {
-      getPosts: getPosts
+      getPosts: getPosts,
+      getPost: getPost
     }
     
   }]

@@ -20,7 +20,7 @@
 </form>
 <ul class="posts-ul">
   <li ng-repeat="post in posts">
-    <a href="#">{{ post.title}}</a><br>
+    <a ui-sref="post({ id: post.id })">{{ post.title}}</a><br>
     <span>Posted on {{ post.created_at | date }} by {{ post.author }}</span>
   </li>
 </ul>
