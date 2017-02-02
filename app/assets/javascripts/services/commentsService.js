@@ -9,8 +9,13 @@ BulletinBoard.factory('commentsService', ['Restangular',
         return _comments;
       });
 
+    Restangular.extendModel('comments', function(model) {
+      model.changeVote = _changeVote;
+      return model;
+    })
+
     var extendComment = function(comment) {
-      comment.changeVote = _changeVote
+      // comment.changeVote = _changeVote
       Restangular.restangularizeElement(null, comment, 'comments', { id: comment.id })
       return comment;
     }
@@ -24,9 +29,19 @@ BulletinBoard.factory('commentsService', ['Restangular',
       return _comments
     }
 
+    var create = function(params) {
+      Restangular.all('comments').post(params)
+        .then(function(response) {
+          _comments.unshift(response);
+          return response;
+        })
+
+    }
+
     return {
       getComments: getComments,
-      extendComment: extendComment
+      extendComment: extendComment,
+      create: create
     }
 
   }]

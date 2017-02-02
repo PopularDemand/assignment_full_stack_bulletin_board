@@ -31,6 +31,19 @@ BulletinBoard.factory('postsService', ['Restangular', 'commentsService',
       return posts;
     })
 
+    Restangular.extendModel('posts', function(model) {
+      model.createComment = function(commentParams) {
+        commentParams.post_id = model.id;
+        return commentsService.create(commentParams)
+          .then(function(comment){
+            model.comments.push(comment);
+            return comment;
+          });
+        }
+      return model;
+    })
+
+
     return {
       getPosts: getPosts,
       getPost: getPost
