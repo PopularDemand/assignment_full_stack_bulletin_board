@@ -2,7 +2,7 @@ BulletinBoard.factory('commentsService', ['Restangular',
   function(Restangular) {
 
     var _comments = [];
-    
+
     Restangular.all('comments').getList()
       .then(function(comments) {
         angular.copy(comments.map(extendComment), _comments);
@@ -21,21 +21,20 @@ BulletinBoard.factory('commentsService', ['Restangular',
     }
 
     var _changeVote = function(amount) {
-      this.votes += amount
-      this.save()
+      this.votes += amount;
+      this.save();
     }
 
     var getComments = function() {
-      return _comments
+      return _comments;
     }
 
     var create = function(params) {
-      Restangular.all('comments').post(params)
+      return Restangular.all('comments').post(params)
         .then(function(response) {
           _comments.unshift(response);
           return response;
         })
-
     }
 
     return {
