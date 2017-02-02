@@ -1,5 +1,5 @@
 <h3>Recent Comments</h3>
-<ul>
+<ul class='comments-list'>
   <li ng-repeat="comment in comments | orderBy:created_at:true | limitTo:10">
     <one-comment></one-comment>
   </li>
